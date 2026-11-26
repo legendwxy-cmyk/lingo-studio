@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Lingo CLI/Fallback 启动脚本（打包的 Lingo.app/Contents/MacOS/LingoReelApp 已升级为原生 Go Universal Mach-O 二进制）
+export PATH="/opt/homebrew/bin:/opt/homebrew/opt/python@3.12/bin:/usr/local/bin:/usr/local/opt/python@3.12/bin:/Library/Frameworks/Python.framework/Versions/3.12/bin:/usr/bin:/bin:/usr/sbin:/sbin:${PATH:-}"
+
+CONTENTS_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+RESOURCES_DIR="$CONTENTS_DIR/Resources"
+APP_SUPPORT="$HOME/Library/Application Support/LingoReelStudio"
+VENV_DIR="$APP_SUPPORT/.venv"
+CONSOLE_URL_FILE="$APP_SUPPORT/data/console_url.txt"
+BACKEND_DIR="$RESOURCES_DIR/backend"
+
+mkdir -p "$APP_SUPPORT/data" "$APP_SUPPORT/whisper-cache" "$APP_SUPPORT/python" "$APP_SUPPORT/uv-cache" "$APP_SUPPORT/bin"
+
+export LINGOREEL_DATA_DIR="$APP_SUPPORT/data"
+export LINGOREEL_FRONTEND_DIST="$RESOURCES_DIR/frontend/dist"
+export LINGOREEL_VENV_DIR="$VENV_DIR"
+export LINGOREEL_DESKTOP_APP="1"
+export HF_HOME="$APP_SUPPORT/whisper-cache"
+export HF_ENDPOINT="${HF_ENDPOINT:-https://hf-mirror.com}"
+export UV_PYTHON_INSTALL_DIR="$APP_SUPPORT/python"
+export UV_CACHE_DIR="$APP_SUPPORT/uv-cache"
+export PYTHONUNBUFFERED=1
+
+if [ -f "$CONSOLE_URL_FILE" ]; then
+  EXISTING_CONSOLE="$(cat "$CONSOLE_URL_FILE" 2>/dev/null || true)"
+  if [ -n "$EXISTING_CONSOLE" ] && curl -fsS --max-time 1 "${EXISTING_CONSOLE}/console/api/state" >/dev/null 2>&1; then
+    /usr/bin/open "$EXISTING_CONSOLE" 2>/dev/null || true
+    exit 0
+  fi
+fi
+
+if [ -x "$VENV_DIR/bin/python" ]; then
+  export PATH="$VENV_DIR/bin:$PATH"
+  exec "$VENV_DIR/bin/python" "$BACKEND_DIR/desktop_console.py" --window
+fi
+
+for cand in \
+  /opt/homebrew/opt/python@3.12/bin/python3.12 \
+  /opt/homebrew/bin/python3.12 \
+  /opt/homebrew/bin/python3 \
+  /usr/local/bin/python3.12 \
+  /usr/local/bin/python3 \
+  /Library/Frameworks/Python.framework/Versions/3.12/bin/python3.12; do
+  if [ -x "$cand" ] && "$cand" -c "import http.server, sqlite3" >/dev/null 2>&1; then
+    exec "$cand" "$BACKEND_DIR/desktop_console.py" --window
+  fi
+done
+
+if xcode-select -p >/dev/null 2>&1 && [ -x "/usr/bin/python3" ]; then
+  if /usr/bin/python3 -c "import http.server, sqlite3" >/dev/null 2>&1; then
+    exec /usr/bin/python3 "$BACKEND_DIR/desktop_console.py" --window
+  fi
+fi
+
+HELPER="$APP_SUPPORT/first_setup.command"
+cat > "$HELPER" <<EOF
+#!/bin/bash
+set -e
+exec "$RESOURCES_DIR/bootstrap.sh" "$RESOURCES_DIR" 8000 --console
+EOF
+chmod +x "$HELPER"
+/usr/bin/open -a Terminal "$HELPER"

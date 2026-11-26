@@ -1,0 +1,433 @@
+/* 3D Extruded Chunky Button Physics */
+.chunk {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  font-weight: 800;
+  font-size: 14px;
+  border-radius: 15px;
+  padding: 8px 15px;
+  transition: transform 0.08s ease, box-shadow 0.08s ease, background-color 0.12s ease;
+  box-shadow:
+    0 5px 0 var(--d, var(--ink-deep)),
+    inset 0 3px 0 rgba(255, 255, 255, 0.45),
+    0 9px 15px rgba(30, 12, 0, 0.18);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.chunk:hover:not(:disabled) {
+  filter: brightness(1.03);
+}
+
+.chunk:active:not(:disabled) {
+  transform: translateY(3px);
+  box-shadow:
+    0 2px 0 var(--d, var(--ink-deep)),
+    inset 0 2px 0 rgba(255, 255, 255, 0.35),
+    0 3px 6px rgba(30, 12, 0, 0.16);
+}
+
+.chunk:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.chunk-sm {
+  padding: 6px 12px;
+  font-size: 13px;
+  border-radius: 12px;
+  box-shadow:
+    0 4px 0 var(--d, var(--ink-deep)),
+    inset 0 2px 0 rgba(255, 255, 255, 0.45),
+    0 6px 10px rgba(30, 12, 0, 0.14);
+}
+
+.chunk-sm:active:not(:disabled) {
+  transform: translateY(2px);
+  box-shadow:
+    0 2px 0 var(--d, var(--ink-deep)),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.chunk-dark {
+  background: var(--ink);
+  color: #FFF8EB;
+  --d: var(--ink-deep);
+}
+
+.chunk-cream {
+  background: var(--cream);
+  color: var(--cream-ink);
+  --d: var(--cream-deep);
+}
+
+.chunk-white {
+  background: var(--card-bg);
+  color: var(--ink);
+  --d: var(--card-deep);
+}
+
+.chunk-yellow {
+  background: var(--accent);
+  color: var(--ink);
+  --d: var(--accent-deep);
+}
+
+.chunk-mint {
+  background: var(--mint);
+  color: var(--mint-ink);
+  --d: var(--mint-deep);
+}
+
+.chunk-coral {
+  background: var(--coral);
+  color: #FFFFFF;
+  --d: var(--coral-deep);
+}
+
+.chunk-sky {
+  background: var(--sky);
+  color: #FFFFFF;
+  --d: var(--sky-deep);
+}
+
+/* 3D Glossy Recessed Toggle Switch */
+.toggle-3d {
+  width: 52px;
+  height: 30px;
+  border-radius: 999px;
+  position: relative;
+  background: #2C2148;
+  box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.48), 0 3px 0 #120B24;
+  transition: background-color 0.16s ease, box-shadow 0.16s ease;
+  flex-shrink: 0;
+}
+
+.toggle-3d.on {
+  background: var(--mint-deep);
+  box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.30), 0 3px 0 #0F5434;
+}
+
+.toggle-3d::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 28%, #FFFFFF, #E6DFF8);
+  box-shadow: 0 3px 0 #8E83AD, 0 5px 8px rgba(0, 0, 0, 0.30);
+  transition: left 0.16s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.toggle-3d.on::after {
+  left: 26px;
+}
+
+/* Signature 3D Spherical Rotary Speed Dial */
+.dial-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.dial-3d {
+  position: relative;
+  width: 158px;
+  height: 158px;
+  border-radius: 50%;
+  cursor: pointer;
+  background: var(--dial-outer);
+  box-shadow:
+    inset -9px -13px 18px rgba(100, 35, 0, 0.38),
+    inset 9px 9px 14px rgba(255, 255, 255, 0.72),
+    0 12px 0 var(--dial-edge),
+    0 20px 26px rgba(55, 14, 0, 0.34);
+  transition: transform 0.08s ease;
+}
+
+.dial-3d:active {
+  transform: translateY(2px);
+}
+
+.dial-inner {
+  position: absolute;
+  inset: 20px;
+  border-radius: 50%;
+  background: var(--dial-inner);
+  box-shadow:
+    inset 0 7px 14px rgba(100, 40, 0, 0.28),
+    inset 0 -4px 8px #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.dial-val {
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -1.2px;
+  color: var(--dial-text);
+  line-height: 1;
+}
+
+.dial-sub {
+  font-size: 12px;
+  font-weight: 900;
+  color: var(--dial-sub);
+  margin-top: 4px;
+}
+
+.dial-dot {
+  position: absolute;
+  left: 50%;
+  top: 7px;
+  width: 11px;
+  height: 11px;
+  margin-left: -5.5px;
+  border-radius: 50%;
+  background: var(--ink);
+  box-shadow: inset 0 2px 2px rgba(255, 255, 255, 0.35);
+  transform-origin: 5.5px 72px;
+  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+  pointer-events: none;
+}
+
+.dial-steps {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Tactile 3D Pressable Vocabulary Keycaps inside Subtitles */
+.lex-term,
+.keycap-word {
+  display: inline-block;
+  padding: 1px 8px;
+  margin: 1px 2px;
+  border-radius: 10px;
+  background: var(--keycap-bg);
+  color: var(--keycap-ink);
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 3px 0 var(--keycap-deep), inset 0 2px 0 #FFFFFF;
+  transition: transform 0.08s ease, background-color 0.12s ease;
+}
+
+.lex-term[data-category="短语动词"],
+.lex-term[data-category="惯用表达"] {
+  background: var(--mint-soft);
+  color: var(--mint-ink);
+  box-shadow: 0 3px 0 #3CA875, inset 0 2px 0 #FFFFFF;
+}
+
+.lex-term[data-category="搭配"],
+.lex-term[data-category="短语"] {
+  background: var(--sky-soft);
+  color: #103A6E;
+  box-shadow: 0 3px 0 #5C9BD6, inset 0 2px 0 #FFFFFF;
+}
+
+.lex-term:hover {
+  transform: translateY(-1px);
+}
+
+.lex-term.selected {
+  background: var(--ink) !important;
+  color: var(--accent) !important;
+  box-shadow: 0 3px 0 #000000 !important;
+}
+
+/* Cloze Pressable 3D Mask Keycap */
+.cloze-cap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 72px;
+  padding: 1px 10px;
+  margin: 2px 3px;
+  border-radius: 10px;
+  background: var(--ink);
+  color: transparent;
+  cursor: pointer;
+  font-weight: 800;
+  box-shadow: 0 3px 0 #000000, inset 0 2px 0 rgba(255, 255, 255, 0.18);
+  transition: transform 0.08s ease, background-color 0.14s ease, color 0.14s ease;
+  user-select: none;
+}
+
+.cloze-cap:active {
+  transform: translateY(2px);
+}
+
+.cloze-cap.open {
+  background: var(--mint);
+  color: var(--mint-ink);
+  box-shadow: 0 3px 0 var(--mint-deep), inset 0 2px 0 rgba(255, 255, 255, 0.55);
+}
+
+/* Dictation 3D Input Keycap */
+.dict-cap {
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  background: var(--card-bg);
+  color: var(--ink);
+  padding: 2px 8px;
+  font-size: 15px;
+  font-weight: 700;
+  margin: 2px 3px;
+  box-shadow: inset 0 2px 4px rgba(27, 19, 48, 0.10);
+  width: 112px;
+}
+
+.dict-cap.ok {
+  background: var(--mint-soft);
+  border-color: var(--mint-deep);
+  color: var(--mint-ink);
+}
+
+.dict-cap.err {
+  background: var(--coral-soft);
+  border-color: var(--coral);
+  color: var(--coral-deep);
+}
+
+/* Badges & Pills */
+.pill-3d {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 800;
+  background: var(--cream);
+  color: var(--ink);
+  box-shadow: 0 2px 0 var(--card-deep);
+}
+
+.pill-3d.dark {
+  background: var(--ink);
+  color: var(--accent);
+  box-shadow: 0 2px 0 var(--ink-deep);
+}
+
+.pill-3d.mint {
+  background: var(--mint-soft);
+  color: var(--mint-ink);
+  box-shadow: 0 2px 0 #55B689;
+}
+
+.pill-3d.coral {
+  background: var(--coral-soft);
+  color: var(--coral-deep);
+  box-shadow: 0 2px 0 #D66980;
+}
+
+/* Form Controls */
+.input-3d,
+.select-3d,
+.textarea-3d {
+  width: 100%;
+  background: var(--card-bg);
+  color: var(--ink);
+  border: 2px solid var(--card-deep);
+  border-radius: 14px;
+  padding: 9px 13px;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: inset 0 2px 5px rgba(27, 19, 48, 0.08);
+  transition: border-color 0.12s ease;
+}
+
+.input-3d:focus,
+.select-3d:focus,
+.textarea-3d:focus {
+  border-color: var(--ink);
+  outline: none;
+}
+
+.textarea-3d {
+  resize: vertical;
+  min-height: 82px;
+  line-height: 1.55;
+}
+
+/* Modal Backdrop & 3D Extruded Shell */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background: rgba(27, 19, 48, 0.62);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-3d {
+  width: 100%;
+  max-width: 780px;
+  max-height: 88vh;
+  background: var(--panel-bg);
+  color: var(--ink);
+  border-radius: 28px;
+  box-shadow:
+    0 12px 0 var(--ink),
+    inset 0 4px 0 #FFFFFF,
+    0 28px 50px rgba(0, 0, 0, 0.42);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px 24px;
+  background: var(--card-bg);
+  border-bottom: 2px solid var(--card-deep);
+}
+
+.modal-head h2 {
+  font-size: 20px;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.modal-body {
+  padding: 20px 24px 24px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+/* Toast Notification */
+.toast-3d {
+  position: fixed;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 80;
+  background: var(--ink);
+  color: var(--accent);
+  padding: 10px 18px;
+  border-radius: 16px;
+  font-size: 14px;
+  font-weight: 800;
+  box-shadow: 0 6px 0 var(--ink-deep), 0 14px 28px rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  pointer-events: none;
+}

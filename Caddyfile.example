@@ -1,0 +1,11 @@
+# 将下面域名替换为你解析到服务器公网 IP 的真实域名，保存为 Caddyfile 后运行：
+# docker compose --profile https up -d
+# Caddy 会自动申请并续期免费的 Let's Encrypt HTTPS 证书（开启浏览器麦克风跟读与口述复述必需）
+
+your-domain.example.com {
+    encode zstd gzip
+    request_body {
+        max_size 512MB
+    }
+    reverse_proxy lingoreel:8000
+}

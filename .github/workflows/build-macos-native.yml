@@ -1,0 +1,195 @@
+name: Build Native macOS Universal DMG (Lingo SwiftUI)
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: "GitHub Release tag to publish DMG to (e.g. v1.3.0)"
+        required: false
+        default: "v1.3.0"
+  push:
+    branches:
+      - main
+    paths:
+      - "macos/native-app/**"
+      - "macos/Info.plist"
+      - "macos/LingoAppIcon.png"
+      - "backend/**"
+      - "frontend/src/**"
+      - "frontend/public/**"
+      - "frontend/index.html"
+      - ".github/workflows/build-macos-native.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  build-macos-native:
+    runs-on: macos-15
+    timeout-minutes: 25
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Build production frontend bundle
+        working-directory: frontend
+        run: |
+          npm ci
+          npm run build
+          test -f dist/index.html
+          test -f dist/lingo-logo.png
+          test -f dist/lingo-icon.png
+
+      - name: Syntax-check Python backend
+        run: |
+          python3 -m py_compile backend/*.py
+
+      - name: Run Swift XCTest suite on real macOS 15
+        working-directory: macos/native-app
+        run: |
+          swift --version
+          swift test --verbose
+
+      - name: Build Universal macOS SwiftUI Binary (arm64 + x86_64)
+        working-directory: macos/native-app
+        run: |
+          swift build -c release --arch arm64 --arch x86_64
+          BIN_DIR="$(swift build -c release --arch arm64 --arch x86_64 --show-bin-path)"
+          BINARY="${BIN_DIR}/LingoReelApp"
+          echo "BIN_DIR=${BIN_DIR}" >> "$GITHUB_ENV"
+          echo "BINARY=${BINARY}" >> "$GITHUB_ENV"
+          test -x "$BINARY"
+          lipo -info "$BINARY"
+          lipo -info "$BINARY" | grep -q "arm64"
+          lipo -info "$BINARY" | grep -q "x86_64"
+          otool -L "$BINARY"
+          # Ensure zero third-party/Homebrew dylib dependencies and real Apple SwiftUI/AppKit linkage
+          otool -L "$BINARY" | grep -q "SwiftUI.framework"
+          otool -L "$BINARY" | grep -q "AppKit.framework"
+          if otool -L "$BINARY" | grep -E '/opt/homebrew|/usr/local'; then
+            echo "ERROR: Binary links against non-system dylib!"
+            exit 1
+          fi
+
+      - name: Generate Apple HIG Transparent Squircle AppIcon.icns with iconutil
+        run: |
+          mkdir -p build_stage/AppIcon.iconset
+          SRC="macos/LingoAppIcon.png"
+          test -f "$SRC"
+          # Verify PNG has alpha channel (transparent corners outside squircle)
+          sips -g hasAlpha "$SRC" | grep -qi "yes"
+          for sz in 16 32 128 256 512; do
+            sips -s format png -z "$sz" "$sz" "$SRC" --out "build_stage/AppIcon.iconset/icon_${sz}x${sz}.png" >/dev/null
+            sz2=$((sz * 2))
+            sips -s format png -z "$sz2" "$sz2" "$SRC" --out "build_stage/AppIcon.iconset/icon_${sz}x${sz}@2x.png" >/dev/null
+          done
+          iconutil -c icns build_stage/AppIcon.iconset -o build_stage/AppIcon.icns
+          test -s build_stage/AppIcon.icns
+          ls -lh build_stage/AppIcon.icns
+
+      - name: Assemble Lingo.app bundle (100% SwiftUI, zero __pycache__ / .pyc)
+        run: |
+          APP="build_stage/Lingo.app"
+          rm -rf "$APP"
+          mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources/app/backend" "$APP/Contents/Resources/app/frontend/dist"
+
+          plutil -lint macos/Info.plist
+          cp macos/Info.plist "$APP/Contents/Info.plist"
+          plutil -replace LSUIElement -bool false "$APP/Contents/Info.plist"
+          printf 'APPL????' > "$APP/Contents/PkgInfo"
+          cp "$BINARY" "$APP/Contents/MacOS/LingoReelApp"
+          chmod +x "$APP/Contents/MacOS/LingoReelApp"
+          cp build_stage/AppIcon.icns "$APP/Contents/Resources/AppIcon.icns"
+          cp macos/native-app/Sources/LingoReelApp/Resources/lingo-logo.png "$APP/Contents/Resources/lingo-logo.png"
+
+          # Copy any SwiftPM resource bundle alongside Resources as well
+          for b in "${BIN_DIR}"/*.bundle; do
+            if [ -d "$b" ]; then
+              cp -R "$b" "$APP/Contents/Resources/"
+            fi
+          done
+
+          rsync -a \
+            --exclude='.venv' \
+            --exclude='data' \
+            --exclude='__pycache__' \
+            --exclude='*.pyc' \
+            --exclude='*.pyo' \
+            --exclude='.DS_Store' \
+            backend/ "$APP/Contents/Resources/app/backend/"
+
+          rsync -a --exclude='.DS_Store' frontend/dist/ "$APP/Contents/Resources/app/frontend/dist/"
+          cp README.md "$APP/Contents/Resources/app/README.md"
+
+          # Verify zero pycache/pyc inside app bundle
+          if find "$APP" \( -name '__pycache__' -o -name '*.pyc' \) | grep -q .; then
+            echo "ERROR: Found __pycache__ or .pyc inside .app bundle!"
+            exit 1
+          fi
+
+      - name: Sign and strictly verify Lingo.app with Apple codesign
+        run: |
+          APP="build_stage/Lingo.app"
+          codesign --force --deep --sign - "$APP"
+          codesign --verify --deep --strict --verbose=2 "$APP"
+          "$APP/Contents/MacOS/LingoReelApp" --self-test --verify-bundle
+
+      - name: Package genuine Apple UDZO DMG and verify mount + execution
+        run: |
+          rm -rf build_stage/dmg_root build_stage/Lingo-macOS.dmg
+          mkdir -p build_stage/dmg_root
+          cp -R "build_stage/Lingo.app" build_stage/dmg_root/
+          ln -s /Applications build_stage/dmg_root/Applications
+          cp "macOS安装说明.txt" "build_stage/dmg_root/安装说明.txt"
+
+          hdiutil create \
+            -volname "Lingo" \
+            -srcfolder build_stage/dmg_root \
+            -ov \
+            -format UDZO \
+            build_stage/Lingo-macOS.dmg
+
+          ls -lh build_stage/Lingo-macOS.dmg
+          shasum -a 256 build_stage/Lingo-macOS.dmg
+
+          MOUNT_DIR="$(mktemp -d)"
+          hdiutil attach build_stage/Lingo-macOS.dmg -mountpoint "$MOUNT_DIR" -nobrowse -readonly
+          trap 'hdiutil detach "$MOUNT_DIR" -force || true' EXIT
+
+          test -x "$MOUNT_DIR/Lingo.app/Contents/MacOS/LingoReelApp"
+          test -f "$MOUNT_DIR/Lingo.app/Contents/Resources/AppIcon.icns"
+          test -f "$MOUNT_DIR/Lingo.app/Contents/Resources/lingo-logo.png"
+          test -L "$MOUNT_DIR/Applications"
+          codesign --verify --deep --strict "$MOUNT_DIR/Lingo.app"
+          "$MOUNT_DIR/Lingo.app/Contents/MacOS/LingoReelApp" --self-test --verify-bundle
+          hdiutil detach "$MOUNT_DIR" -force
+          trap - EXIT
+          echo "DMG_MOUNT_AND_SELF_TEST_PASSED"
+
+      - name: Upload macOS Universal SwiftUI DMG artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Lingo-macOS-native-dmg
+          path: build_stage/Lingo-macOS.dmg
+          if-no-files-found: error
+
+      - name: Publish to GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.event.inputs.release_tag || 'v1.3.0' }}
+        run: |
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" build_stage/Lingo-macOS.dmg --clobber
+          else
+            gh release create "$TAG" build_stage/Lingo-macOS.dmg \
+              --title "Lingo ${TAG}（100% 原生 SwiftUI 桌面端 + 玩味 3D 视觉升级）" \
+              --notes "100% 原生 macOS SwiftUI + AppKit 桌面控制台（Universal arm64 + x86_64，支持柑橘/薰衣草/陶瓷三套玩味 3D 皮肤、全新透明底 3D Lingo Logo、无白边 Apple Squircle 图标、一键自动环境安装与共享 SQLite AI 配置）及「同步连续跟读（分句保存）」功能。"
+          fi

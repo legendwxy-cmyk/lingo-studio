@@ -1,0 +1,188 @@
+:root,
+[data-skin="citrus"] {
+  --shell-bg: #FF7A2D;
+  --shell-deck-top: #FF8E47;
+  --shell-deck-bottom: #FF7224;
+  --shell-deep: #C44908;
+  --shell-shadow: rgba(80, 22, 0, 0.30);
+  --shell-well: rgba(255, 245, 228, 0.24);
+  --shell-well-inset: rgba(120, 38, 0, 0.20);
+  --shell-pill-bg: rgba(255, 248, 235, 0.94);
+  --shell-pill-deep: #C45312;
+
+  --panel-bg: #FFF6E8;
+  --panel-deep: #C45312;
+  --card-bg: #FFFFFF;
+  --card-deep: #DECBB0;
+  --cream: #FFF8EB;
+  --cream-ink: #4A1E05;
+  --cream-deep: #C4631B;
+
+  --ink: #1B1330;
+  --ink-deep: #090512;
+  --ink-sub: #473C5C;
+  --ink-muted: #5A4E70;
+
+  --accent: #FFE24C;
+  --accent-deep: #C49B00;
+  --accent-hi: #FFF9CE;
+
+  --mint: #53D89A;
+  --mint-soft: #D7F8E8;
+  --mint-ink: #0B3320;
+  --mint-deep: #1E8A58;
+
+  --coral: #C91D42;
+  --coral-soft: #FFE4E9;
+  --coral-deep: #850E29;
+
+  --sky: #1E6FC8;
+  --sky-soft: #E0F1FF;
+  --sky-deep: #134A8A;
+
+  --dial-outer: radial-gradient(circle at 30% 24%, #FFF7E8 0%, #FFD699 42%, #DF7E22 100%);
+  --dial-inner: radial-gradient(circle at 36% 28%, #FFFFFF, #FFE9C4 58%, #EFA95F);
+  --dial-edge: #A4400A;
+  --dial-text: #4A1E05;
+  --dial-sub: #7C3006;
+
+  --keycap-bg: #FFF0D4;
+  --keycap-ink: #542204;
+  --keycap-deep: #D48A3B;
+
+  --font-display: "Bricolage Grotesque", "Noto Sans SC", system-ui, -apple-system, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+
+  font-synthesis: none;
+  line-break: strict;
+}
+
+[data-skin="lavender"] {
+  --shell-bg: #B5A1FF;
+  --shell-deck-top: #C4B3FF;
+  --shell-deck-bottom: #A68EFF;
+  --shell-deep: #6E52D4;
+  --shell-shadow: rgba(34, 14, 92, 0.28);
+  --shell-well: rgba(255, 255, 255, 0.26);
+  --shell-well-inset: rgba(58, 30, 140, 0.20);
+  --shell-pill-bg: rgba(255, 255, 255, 0.94);
+  --shell-pill-deep: #7B62D8;
+
+  --panel-bg: #F9F7FF;
+  --panel-deep: #7B62D8;
+  --card-bg: #FFFFFF;
+  --card-deep: #CFC3F2;
+  --cream: #FFFFFF;
+  --cream-ink: #1A1230;
+  --cream-deep: #856FD8;
+
+  --ink: #1A1230;
+  --ink-deep: #090512;
+  --ink-sub: #3A2E59;
+  --ink-muted: #4E4070;
+
+  --accent: #D4FF3F;
+  --accent-deep: #85AD00;
+  --accent-hi: #F4FFBE;
+
+  --dial-outer: radial-gradient(circle at 30% 24%, #FFFFFF 0%, #E7DEFF 44%, #8E74EB 100%);
+  --dial-inner: radial-gradient(circle at 36% 28%, #FFFFFF, #F3EEFF 58%, #C4B3FF);
+  --dial-edge: #5C3FC0;
+  --dial-text: #1A1230;
+  --dial-sub: #473285;
+
+  --keycap-bg: #EDE7FF;
+  --keycap-ink: #2A1666;
+  --keycap-deep: #967EEB;
+}
+
+[data-skin="ceramic"] {
+  --shell-bg: #E7E3DA;
+  --shell-deck-top: #F7F5F0;
+  --shell-deck-bottom: #E8E4DC;
+  --shell-deep: #BDB7AA;
+  --shell-shadow: rgba(23, 26, 33, 0.16);
+  --shell-well: rgba(23, 26, 33, 0.05);
+  --shell-well-inset: rgba(23, 26, 33, 0.12);
+  --shell-pill-bg: #FFFFFF;
+  --shell-pill-deep: #C4BFB3;
+
+  --panel-bg: #F7F5F0;
+  --panel-deep: #BDB7AA;
+  --card-bg: #FFFFFF;
+  --card-deep: #CDC8BC;
+  --cream: #FFFFFF;
+  --cream-ink: #171A21;
+  --cream-deep: #C4BFB3;
+
+  --ink: #171A21;
+  --ink-deep: #07080B;
+  --ink-sub: #434957;
+  --ink-muted: #545B6B;
+
+  --accent: #FFE14A;
+  --accent-deep: #BD9900;
+  --accent-hi: #FFF7BD;
+
+  --dial-outer: radial-gradient(circle at 30% 24%, #FFFFFF 0%, #EFECE5 46%, #BDB7AA 100%);
+  --dial-inner: radial-gradient(circle at 36% 28%, #FFFFFF, #F7F5F0 60%, #DCD7CB);
+  --dial-edge: #9A9386;
+  --dial-text: #171A21;
+  --dial-sub: #434957;
+
+  --keycap-bg: #EEF2FF;
+  --keycap-ink: #162B85;
+  --keycap-deep: #8AA0E6;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height: 100%;
+  background: var(--shell-bg);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.2s ease;
+}
+
+button, input, textarea, select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 2px;
+}
+
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

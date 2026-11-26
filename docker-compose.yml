@@ -1,0 +1,39 @@
+services:
+  lingoreel:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: lingoreel-studio
+    restart: unless-stopped
+    ports:
+      - "${APP_PORT:-8000}:8000"
+    environment:
+      APP_ACCESS_PASSWORD: "${APP_ACCESS_PASSWORD:-}"
+      APP_SECRET_KEY: "${APP_SECRET_KEY:-}"
+      MAX_UPLOAD_MB: "${MAX_UPLOAD_MB:-500}"
+    volumes:
+      # Persist SQLite database, uploaded videos, covers, and shadowing recordings
+      - ./data:/app/backend/data
+      # Cache downloaded faster-whisper models across container restarts
+      - ./whisper-cache:/app/whisper-cache
+
+  # Optional automatic HTTPS reverse proxy (recommended when using a custom domain so browser microphone works!)
+  # Enable with: docker compose --profile https up -d
+  caddy:
+    image: caddy:2-alpine
+    container_name: lingoreel-caddy
+    profiles: ["https"]
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - lingoreel
+
+volumes:
+  caddy_data:
+  caddy_config:

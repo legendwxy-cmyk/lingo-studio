@@ -1,0 +1,16 @@
+.git
+.env
+backend/.venv
+backend/data
+backend/__pycache__
+**/__pycache__
+*.pyc
+frontend/node_modules
+frontend/dist
+design-demos
+refs
+design-spec.md
+directions.md
+direction-approved.md
+data
+whisper-cache

@@ -1,0 +1,213 @@
+#!/usr/bin/env osascript -l JavaScript
+ObjC.import('Cocoa');
+ObjC.import('Foundation');
+
+var hudState = {
+  statusPath: '',
+  raisePath: '',
+  logoPath: '',
+  initialTitle: '正在准备 Lingo 原生桌面端...',
+  initialDetail: '正在检测本机运行环境，请稍候...',
+  win: null,
+  delegate: null,
+  titleLabel: null,
+  detailLabel: null,
+  progressBar: null,
+  timer: null,
+  lastTitle: '',
+  lastDetail: ''
+};
+
+function makeColor(r, g, b, a) {
+  return $.NSColor.colorWithCalibratedRedGreenBlueAlpha(r, g, b, a);
+}
+
+function makeLabel(x, y, w, h, fontSize, isBold, color, align) {
+  var tf = $.NSTextField.alloc.initWithFrame($.NSMakeRect(x, y, w, h));
+  tf.drawsBackground = false;
+  tf.bordered = false;
+  tf.editable = false;
+  tf.selectable = false;
+  tf.textColor = color;
+  tf.font = isBold ? $.NSFont.boldSystemFontOfSize(fontSize) : $.NSFont.systemFontOfSize(fontSize);
+  tf.alignment = align;
+  tf.lineBreakMode = 4; // NSLineBreakByTruncatingTail
+  tf.stringValue = '';
+  return tf;
+}
+
+ObjC.registerSubclass({
+  name: 'LingoSetupHUDDelegate',
+  superclass: 'NSObject',
+  methods: {
+    'applicationDidFinishLaunching:': {
+      types: ['void', ['id']],
+      implementation: function () {
+        var W = 480;
+        var H = 228;
+        var styleMask = ($.NSWindowStyleMaskTitled || 1)
+          | ($.NSWindowStyleMaskMiniaturizable || 4)
+          | ($.NSWindowStyleMaskFullSizeContentView || 32768);
+
+        var win = $.NSWindow.alloc.initWithContentRectStyleMaskBackingDefer(
+          $.NSMakeRect(0, 0, W, H),
+          styleMask,
+          $.NSBackingStoreBuffered || 2,
+          false
+        );
+        win.releasedWhenClosed = false;
+        win.title = 'Lingo';
+        win.titleVisibility = 1; // NSWindowTitleHidden
+        win.titlebarAppearsTransparent = true;
+        win.movableByWindowBackground = true;
+        win.backgroundColor = makeColor(1.0, 0.973, 0.933, 1.0); // #FFF8EE warm cream
+        win.level = 3; // NSFloatingWindowLevel so user immediately sees setup progress
+        win.center;
+
+        var content = win.contentView;
+
+        // Top citrus header strip matching Lingo Playful 3D theme (#FF7A2D)
+        var banner = $.NSBox.alloc.initWithFrame($.NSMakeRect(0, H - 68, W, 68));
+        banner.boxType = 4; // NSBoxCustom
+        banner.borderType = 0; // NSNoBorder
+        banner.fillColor = makeColor(1.0, 0.478, 0.176, 1.0);
+        banner.transparent = false;
+        content.addSubview(banner);
+
+        var ALIGN_CENTER = (typeof $.NSTextAlignmentCenter !== 'undefined') ? $.NSTextAlignmentCenter : 2;
+        var IMG_SCALE_PROPORTIONAL = (typeof $.NSImageScaleProportionallyUpOrDown !== 'undefined') ? $.NSImageScaleProportionallyUpOrDown : 3;
+
+        // Transparent 3D Lingo wordmark centered inside citrus strip
+        var fm = $.NSFileManager.defaultManager;
+        var hasLogo = false;
+        if (hudState.logoPath && fm.fileExistsAtPath(hudState.logoPath)) {
+          var img = $.NSImage.alloc.initWithContentsOfFile(hudState.logoPath);
+          if (ObjC.unwrap(img)) {
+            var iv = $.NSImageView.alloc.initWithFrame($.NSMakeRect((W - 102) / 2, H - 59, 102, 50));
+            iv.image = img;
+            iv.imageScaling = IMG_SCALE_PROPORTIONAL;
+            content.addSubview(iv);
+            hasLogo = true;
+          }
+        }
+        if (!hasLogo) {
+          var fallbackBrand = makeLabel(0, H - 50, W, 30, 22, true, makeColor(1.0, 1.0, 1.0, 1.0), ALIGN_CENTER);
+          fallbackBrand.stringValue = 'Lingo';
+          content.addSubview(fallbackBrand);
+        }
+
+        // Subtle citrus bottom border line under banner
+        var divider = $.NSBox.alloc.initWithFrame($.NSMakeRect(0, H - 70, W, 2));
+        divider.boxType = 4;
+        divider.borderType = 0;
+        divider.fillColor = makeColor(0.84, 0.34, 0.08, 1.0);
+        divider.transparent = false;
+        content.addSubview(divider);
+
+        var titleLabel = makeLabel(28, 118, W - 56, 24, 15, true, makeColor(0.12, 0.09, 0.19, 1.0), ALIGN_CENTER);
+        titleLabel.stringValue = hudState.initialTitle;
+        content.addSubview(titleLabel);
+
+        var bar = $.NSProgressIndicator.alloc.initWithFrame($.NSMakeRect(40, 84, W - 80, 18));
+        bar.style = 0; // NSProgressIndicatorStyleBar
+        bar.indeterminate = true;
+        bar.usesThreadedAnimation = true;
+        bar.startAnimation($());
+        content.addSubview(bar);
+
+        var detailLabel = makeLabel(28, 50, W - 56, 22, 12.5, false, makeColor(0.35, 0.31, 0.43, 1.0), ALIGN_CENTER);
+        detailLabel.stringValue = hudState.initialDetail;
+        content.addSubview(detailLabel);
+
+        var hintLabel = makeLabel(28, 18, W - 56, 18, 11, false, makeColor(0.56, 0.51, 0.64, 1.0), ALIGN_CENTER);
+        hintLabel.stringValue = '全程后台静默准备，无需命令行窗口，完成后自动关闭并打开 Lingo';
+        content.addSubview(hintLabel);
+
+        hudState.win = win;
+        hudState.titleLabel = titleLabel;
+        hudState.detailLabel = detailLabel;
+        hudState.progressBar = bar;
+        hudState.lastTitle = hudState.initialTitle;
+        hudState.lastDetail = hudState.initialDetail;
+
+        win.makeKeyAndOrderFront($());
+        win.orderFrontRegardless;
+        $.NSApplication.sharedApplication.activateIgnoringOtherApps(true);
+
+        hudState.timer = $.NSTimer.scheduledTimerWithTimeIntervalTargetSelectorUserInfoRepeats(
+          0.25,
+          hudState.delegate,
+          'pollStatus:',
+          $(),
+          true
+        );
+      }
+    },
+    'pollStatus:': {
+      types: ['void', ['id']],
+      implementation: function () {
+        try {
+          var fm = $.NSFileManager.defaultManager;
+          if (!hudState.statusPath || !fm.fileExistsAtPath(hudState.statusPath)) {
+            if (hudState.timer) { hudState.timer.invalidate; }
+            if (hudState.win) { hudState.win.orderOut($()); }
+            $.NSApplication.sharedApplication.terminate($());
+            return;
+          }
+
+          if (hudState.raisePath && fm.fileExistsAtPath(hudState.raisePath)) {
+            fm.removeItemAtPathError(hudState.raisePath, $());
+            if (hudState.win) {
+              hudState.win.makeKeyAndOrderFront($());
+              hudState.win.orderFrontRegardless;
+            }
+            $.NSApplication.sharedApplication.activateIgnoringOtherApps(true);
+          }
+
+          var raw = $.NSString.stringWithContentsOfFileEncodingError(
+            hudState.statusPath,
+            $.NSUTF8StringEncoding,
+            $()
+          );
+          var text = ObjC.unwrap(raw);
+          if (typeof text === 'string') {
+            var lines = text.split(/\r?\n/);
+            var first = (lines[0] || '').trim();
+            if (first === 'DONE') {
+              if (hudState.timer) { hudState.timer.invalidate; }
+              if (hudState.win) { hudState.win.orderOut($()); }
+              $.NSApplication.sharedApplication.terminate($());
+              return;
+            }
+            if (first && first !== hudState.lastTitle && hudState.titleLabel) {
+              hudState.titleLabel.stringValue = first;
+              hudState.lastTitle = first;
+            }
+            var second = (lines[1] || '').trim();
+            if (second && second !== hudState.lastDetail && hudState.detailLabel) {
+              hudState.detailLabel.stringValue = second;
+              hudState.lastDetail = second;
+            }
+          }
+        } catch (e) {
+          // Ignore transient read errors during atomic status replacement
+        }
+      }
+    }
+  }
+});
+
+function run(argv) {
+  if (argv && argv.length > 0) { hudState.statusPath = String(argv[0]); }
+  if (argv && argv.length > 1) { hudState.raisePath = String(argv[1]); }
+  if (argv && argv.length > 2) { hudState.logoPath = String(argv[2]); }
+  if (argv && argv.length > 3 && String(argv[3])) { hudState.initialTitle = String(argv[3]); }
+  if (argv && argv.length > 4 && String(argv[4])) { hudState.initialDetail = String(argv[4]); }
+
+  var nsApp = $.NSApplication.sharedApplication;
+  nsApp.setActivationPolicy($.NSApplicationActivationPolicyAccessory || 1);
+  var delegate = $.LingoSetupHUDDelegate.alloc.init;
+  hudState.delegate = delegate;
+  nsApp.delegate = delegate;
+  nsApp.run;
+}

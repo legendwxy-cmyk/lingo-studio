@@ -1,0 +1,1345 @@
+{
+  "fps": 30,
+  "width": 1920,
+  "height": 1080,
+  "totalDuration": 168.167,
+  "voice": "zh-CN-XiaoxiaoNeural",
+  "rate": "+6%",
+  "chapters": [
+    {
+      "scene": "S01",
+      "start": 0.0,
+      "end": 16.226
+    },
+    {
+      "scene": "S02",
+      "start": 16.226,
+      "end": 47.913
+    },
+    {
+      "scene": "S03",
+      "start": 47.913,
+      "end": 73.867
+    },
+    {
+      "scene": "S04",
+      "start": 73.867,
+      "end": 95.962
+    },
+    {
+      "scene": "S05",
+      "start": 95.962,
+      "end": 124.337
+    },
+    {
+      "scene": "S06",
+      "start": 124.337,
+      "end": 155.356
+    },
+    {
+      "scene": "S07",
+      "start": 155.356,
+      "end": 168.167
+    }
+  ],
+  "cues": {
+    "intro_logo": {
+      "id": "c01",
+      "scene": "S01",
+      "cue": "intro_logo",
+      "start": 0.5,
+      "end": 6.919,
+      "duration": 6.419,
+      "text": "你好！只需两分钟，手把手带你从零装好并用好 Lingo 英语精听学习机。",
+      "subs": [
+        {
+          "start": 0.5,
+          "end": 2.733,
+          "text": "你好！只需两分钟"
+        },
+        {
+          "start": 2.733,
+          "end": 6.919,
+          "text": "带你从零装好并用好 Lingo"
+        }
+      ]
+    },
+    "dmg_open": {
+      "id": "c02",
+      "scene": "S01",
+      "cue": "dmg_open",
+      "start": 7.159,
+      "end": 13.534,
+      "duration": 6.375,
+      "text": "第一步，双击打开 Lingo 安装包，把左边图标直接拖进右边的应用程序文件夹。",
+      "subs": [
+        {
+          "start": 7.159,
+          "end": 10.745,
+          "text": "第一步：双击打开 Lingo 安装包"
+        },
+        {
+          "start": 10.745,
+          "end": 13.534,
+          "text": "将图标拖进「应用程序」文件夹"
+        }
+      ]
+    },
+    "dmg_done": {
+      "id": "c03",
+      "scene": "S01",
+      "cue": "dmg_done",
+      "start": 13.774,
+      "end": 15.946,
+      "duration": 2.172,
+      "text": "拷贝完成，软件就装好了。",
+      "subs": [
+        {
+          "start": 13.774,
+          "end": 15.946,
+          "text": "拷贝完成，安装就搞定了"
+        }
+      ]
+    },
+    "mac_block": {
+      "id": "c04",
+      "scene": "S02",
+      "cue": "mac_block",
+      "start": 16.566,
+      "end": 23.894,
+      "duration": 7.328,
+      "text": "第二步很关键。首次打开若提示无法验证开发者，别担心，先点完成关闭弹窗。",
+      "subs": [
+        {
+          "start": 16.566,
+          "end": 20.23,
+          "text": "首次打开若提示无法验证开发者"
+        },
+        {
+          "start": 20.23,
+          "end": 23.894,
+          "text": "别担心，先点「完成」关闭弹窗"
+        }
+      ]
+    },
+    "mac_settings": {
+      "id": "c05",
+      "scene": "S02",
+      "cue": "mac_settings",
+      "start": 24.134,
+      "end": 29.414,
+      "duration": 5.28,
+      "text": "打开 Mac 系统设置，点进隐私与安全性，向下滑到安全性一栏。",
+      "subs": [
+        {
+          "start": 24.134,
+          "end": 27.18,
+          "text": "打开系统设置 → 隐私与安全性"
+        },
+        {
+          "start": 27.18,
+          "end": 29.414,
+          "text": "向下滑到「安全性」一栏"
+        }
+      ]
+    },
+    "mac_open_anyway": {
+      "id": "c06",
+      "scene": "S02",
+      "cue": "mac_open_anyway",
+      "start": 29.654,
+      "end": 35.512,
+      "duration": 5.858,
+      "text": "找到已阻止使用 Lingo，点击右侧仍要打开并输入密码，一次永久放行。",
+      "subs": [
+        {
+          "start": 29.654,
+          "end": 32.934,
+          "text": "点击右侧「仍要打开」输入密码"
+        },
+        {
+          "start": 32.934,
+          "end": 35.512,
+          "text": "一次放行，以后不再拦截"
+        }
+      ]
+    },
+    "mac_local_net": {
+      "id": "c07",
+      "scene": "S02",
+      "cue": "mac_local_net",
+      "start": 35.752,
+      "end": 42.735,
+      "duration": 6.983,
+      "text": "顺手开启下面两个开关：本地网络让平板能连上电脑，麦克风用来录音跟读对比。",
+      "subs": [
+        {
+          "start": 35.752,
+          "end": 39.605,
+          "text": "顺手开启「本地网络」与「麦克风」"
+        },
+        {
+          "start": 39.605,
+          "end": 42.735,
+          "text": "方便平板连接与网页跟读录音"
+        }
+      ]
+    },
+    "mac_tip": {
+      "id": "c08",
+      "scene": "S02",
+      "cue": "mac_tip",
+      "start": 42.975,
+      "end": 47.633,
+      "duration": 4.658,
+      "text": "小技巧：也可以在应用程序里右键点击 Lingo 选择打开。",
+      "subs": [
+        {
+          "start": 42.975,
+          "end": 47.633,
+          "text": "小技巧：也可右键 Lingo 选「打开」"
+        }
+      ]
+    },
+    "hud_init": {
+      "id": "c09",
+      "scene": "S03",
+      "cue": "hud_init",
+      "start": 48.253,
+      "end": 56.454,
+      "duration": 8.201,
+      "text": "第三步，环境与依赖自检。首次启动会弹出原生进度浮窗自动准备，全程免开黑色命令行。",
+      "subs": [
+        {
+          "start": 48.253,
+          "end": 52.809,
+          "text": "首次启动由原生进度浮窗自动准备"
+        },
+        {
+          "start": 52.809,
+          "end": 56.454,
+          "text": "全程免开黑色命令行敲指令"
+        }
+      ]
+    },
+    "env_open": {
+      "id": "c10",
+      "scene": "S03",
+      "cue": "env_open",
+      "start": 56.694,
+      "end": 60.29,
+      "duration": 3.596,
+      "text": "进入桌面控制台，点开顶部的环境与依赖页。",
+      "subs": [
+        {
+          "start": 56.694,
+          "end": 60.29,
+          "text": "进入桌面控制台，切到「环境与依赖」"
+        }
+      ]
+    },
+    "env_check": {
+      "id": "c11",
+      "scene": "S03",
+      "cue": "env_check",
+      "start": 60.53,
+      "end": 66.89,
+      "duration": 6.36,
+      "text": "确认独立环境、核心引擎、音视频解码与离线语音模型五项全绿已就绪。",
+      "subs": [
+        {
+          "start": 60.53,
+          "end": 66.89,
+          "text": "确认右侧五项全部亮绿「已就绪」"
+        }
+      ]
+    },
+    "env_repair": {
+      "id": "c12",
+      "scene": "S03",
+      "cue": "env_repair",
+      "start": 67.13,
+      "end": 73.587,
+      "duration": 6.457,
+      "text": "若有黄或红项，点左上修复更新依赖，内置国内加速镜像会自动一键补齐。",
+      "subs": [
+        {
+          "start": 67.13,
+          "end": 70.549,
+          "text": "如有缺失点左上「修复 / 更新依赖」"
+        },
+        {
+          "start": 70.549,
+          "end": 73.587,
+          "text": "内置国内加速镜像，全自动一键补齐"
+        }
+      ]
+    },
+    "pub_tab": {
+      "id": "c13",
+      "scene": "S04",
+      "cue": "pub_tab",
+      "start": 74.207,
+      "end": 80.67,
+      "duration": 6.463,
+      "text": "第四步，一键发布学习机网站。回到服务总览页，默认端口 8000 不用改动。",
+      "subs": [
+        {
+          "start": 74.207,
+          "end": 77.438,
+          "text": "第四步：回到「服务总览」发布网站"
+        },
+        {
+          "start": 77.438,
+          "end": 80.67,
+          "text": "默认端口 8000 保持默认即可"
+        }
+      ]
+    },
+    "pub_lan": {
+      "id": "c14",
+      "scene": "S04",
+      "cue": "pub_lan",
+      "start": 80.91,
+      "end": 89.373,
+      "duration": 8.463,
+      "text": "重点拨开局域网共享绿色开关，允许同 Wi-Fi 的平板和手机访问；家里自用，下方口令锁可留空。",
+      "subs": [
+        {
+          "start": 80.91,
+          "end": 85.423,
+          "text": "重点：拨开「局域网共享」绿色开关"
+        },
+        {
+          "start": 85.423,
+          "end": 89.373,
+          "text": "家里自用口令锁可留空免密直进"
+        }
+      ]
+    },
+    "pub_onair": {
+      "id": "c15",
+      "scene": "S04",
+      "cue": "pub_onair",
+      "start": 89.613,
+      "end": 95.682,
+      "duration": 6.069,
+      "text": "启动服务，看到 8000 运行中与下方局域网地址亮起，网站就发布成功了！",
+      "subs": [
+        {
+          "start": 89.613,
+          "end": 93.171,
+          "text": "看到 8000 运行中与局域网网址"
+        },
+        {
+          "start": 93.171,
+          "end": 95.682,
+          "text": "说明学习机网站已发布成功"
+        }
+      ]
+    },
+    "web_open": {
+      "id": "c16",
+      "scene": "S05",
+      "cue": "web_open",
+      "start": 96.302,
+      "end": 103.396,
+      "duration": 7.094,
+      "text": "第五步，电脑浏览器上手使用。点在浏览器打开学习机，一键直达 Lingo 网页端。",
+      "subs": [
+        {
+          "start": 96.302,
+          "end": 99.482,
+          "text": "点击「在浏览器打开学习机」"
+        },
+        {
+          "start": 99.482,
+          "end": 103.396,
+          "text": "一键直达 Lingo 网页学习机"
+        }
+      ]
+    },
+    "web_upload": {
+      "id": "c17",
+      "scene": "S05",
+      "cue": "web_upload",
+      "start": 103.636,
+      "end": 110.719,
+      "duration": 7.083,
+      "text": "进资料库直接拖入英语视频或音频，自动完成语音识别、精准分句与双语精析。",
+      "subs": [
+        {
+          "start": 103.636,
+          "end": 107.571,
+          "text": "进「资料库」拖入英语视频或音频"
+        },
+        {
+          "start": 107.571,
+          "end": 110.719,
+          "text": "自动转写、分句与双语精析"
+        }
+      ]
+    },
+    "web_shadow": {
+      "id": "c18",
+      "scene": "S05",
+      "cue": "web_shadow",
+      "start": 110.959,
+      "end": 120.333,
+      "duration": 9.374,
+      "text": "回到学习机，支持单句循环和音标精听；点跟读对比后可边听原文边连续跟读，自动逐句存到对应句子下方。",
+      "subs": [
+        {
+          "start": 110.959,
+          "end": 116.131,
+          "text": "支持单句循环、音标与连续跟读对比"
+        },
+        {
+          "start": 116.131,
+          "end": 120.333,
+          "text": "边播边读，自动逐句归类存档"
+        }
+      ]
+    },
+    "web_skin": {
+      "id": "c19",
+      "scene": "S05",
+      "cue": "web_skin",
+      "start": 120.573,
+      "end": 124.057,
+      "duration": 3.484,
+      "text": "右上角还能一键切换三套玩味 3D 皮肤。",
+      "subs": [
+        {
+          "start": 120.573,
+          "end": 124.057,
+          "text": "右上角一键切换三套 3D 主题皮肤"
+        }
+      ]
+    },
+    "ipad_intro": {
+      "id": "c20",
+      "scene": "S06",
+      "cue": "ipad_intro",
+      "start": 124.677,
+      "end": 130.134,
+      "duration": 5.457,
+      "text": "第六步，用平板电脑大屏访问，完全不用在平板上装任何 App。",
+      "subs": [
+        {
+          "start": 124.677,
+          "end": 130.134,
+          "text": "第六步：平板大屏精听，免装任何 App"
+        }
+      ]
+    },
+    "ipad_wifi": {
+      "id": "c21",
+      "scene": "S06",
+      "cue": "ipad_wifi",
+      "start": 130.374,
+      "end": 135.603,
+      "duration": 5.229,
+      "text": "只需确认 Mac 和平板连着同一个 Wi-Fi，且电脑端服务正在运行。",
+      "subs": [
+        {
+          "start": 130.374,
+          "end": 133.264,
+          "text": "确认 Mac 与平板连在同一个 Wi-Fi"
+        },
+        {
+          "start": 133.264,
+          "end": 135.603,
+          "text": "且电脑端 Lingo 服务保持运行"
+        }
+      ]
+    },
+    "ipad_copy": {
+      "id": "c22",
+      "scene": "S06",
+      "cue": "ipad_copy",
+      "start": 135.843,
+      "end": 142.344,
+      "duration": 6.501,
+      "text": "看电脑控制台显示的局域网地址，比如 192.168.1.28 冒号 8000。",
+      "subs": [
+        {
+          "start": 135.843,
+          "end": 138.063,
+          "text": "查看控制台「局域网访问地址」"
+        },
+        {
+          "start": 138.063,
+          "end": 142.344,
+          "text": "例如 http://192.168.1.28:8000"
+        }
+      ]
+    },
+    "ipad_type": {
+      "id": "c23",
+      "scene": "S06",
+      "cue": "ipad_type",
+      "start": 142.584,
+      "end": 146.742,
+      "duration": 4.158,
+      "text": "打开平板浏览器，在地址栏输入这串网址并前往。",
+      "subs": [
+        {
+          "start": 142.584,
+          "end": 146.742,
+          "text": "在平板浏览器输入这串网址并前往"
+        }
+      ]
+    },
+    "ipad_ready": {
+      "id": "c24",
+      "scene": "S06",
+      "cue": "ipad_ready",
+      "start": 146.982,
+      "end": 155.076,
+      "duration": 8.094,
+      "text": "一秒直达完整学习机！课程、生词本与跟读记录实时同步，手机用同样方法也能随时学。",
+      "subs": [
+        {
+          "start": 146.982,
+          "end": 151.179,
+          "text": "一秒同步大屏精听，记录全共享"
+        },
+        {
+          "start": 151.179,
+          "end": 155.076,
+          "text": "手机用同样方法也能随时打开"
+        }
+      ]
+    },
+    "recap_cards": {
+      "id": "c25",
+      "scene": "S07",
+      "cue": "recap_cards",
+      "start": 155.696,
+      "end": 163.389,
+      "duration": 7.693,
+      "text": "最后记住四步：拖入安装、隐私点仍要打开、一键开启局域网发布、电脑与平板双端精听。",
+      "subs": [
+        {
+          "start": 155.696,
+          "end": 159.286,
+          "text": "四步速记：安装 → 隐私放行"
+        },
+        {
+          "start": 159.286,
+          "end": 163.389,
+          "text": "一键发布 → 电脑与平板双端精听"
+        }
+      ]
+    },
+    "outro_logo": {
+      "id": "c26",
+      "scene": "S07",
+      "cue": "outro_logo",
+      "start": 163.629,
+      "end": 166.317,
+      "duration": 2.688,
+      "text": "现在就打开 Lingo，精听每一句吧。",
+      "subs": [
+        {
+          "start": 163.629,
+          "end": 166.317,
+          "text": "打开 Lingo，精听每一句"
+        }
+      ]
+    }
+  },
+  "chunks": [
+    {
+      "id": "c01",
+      "scene": "S01",
+      "cue": "intro_logo",
+      "start": 0.5,
+      "end": 6.919,
+      "duration": 6.419,
+      "text": "你好！只需两分钟，手把手带你从零装好并用好 Lingo 英语精听学习机。",
+      "subs": [
+        {
+          "start": 0.5,
+          "end": 2.733,
+          "text": "你好！只需两分钟"
+        },
+        {
+          "start": 2.733,
+          "end": 6.919,
+          "text": "带你从零装好并用好 Lingo"
+        }
+      ]
+    },
+    {
+      "id": "c02",
+      "scene": "S01",
+      "cue": "dmg_open",
+      "start": 7.159,
+      "end": 13.534,
+      "duration": 6.375,
+      "text": "第一步，双击打开 Lingo 安装包，把左边图标直接拖进右边的应用程序文件夹。",
+      "subs": [
+        {
+          "start": 7.159,
+          "end": 10.745,
+          "text": "第一步：双击打开 Lingo 安装包"
+        },
+        {
+          "start": 10.745,
+          "end": 13.534,
+          "text": "将图标拖进「应用程序」文件夹"
+        }
+      ]
+    },
+    {
+      "id": "c03",
+      "scene": "S01",
+      "cue": "dmg_done",
+      "start": 13.774,
+      "end": 15.946,
+      "duration": 2.172,
+      "text": "拷贝完成，软件就装好了。",
+      "subs": [
+        {
+          "start": 13.774,
+          "end": 15.946,
+          "text": "拷贝完成，安装就搞定了"
+        }
+      ]
+    },
+    {
+      "id": "c04",
+      "scene": "S02",
+      "cue": "mac_block",
+      "start": 16.566,
+      "end": 23.894,
+      "duration": 7.328,
+      "text": "第二步很关键。首次打开若提示无法验证开发者，别担心，先点完成关闭弹窗。",
+      "subs": [
+        {
+          "start": 16.566,
+          "end": 20.23,
+          "text": "首次打开若提示无法验证开发者"
+        },
+        {
+          "start": 20.23,
+          "end": 23.894,
+          "text": "别担心，先点「完成」关闭弹窗"
+        }
+      ]
+    },
+    {
+      "id": "c05",
+      "scene": "S02",
+      "cue": "mac_settings",
+      "start": 24.134,
+      "end": 29.414,
+      "duration": 5.28,
+      "text": "打开 Mac 系统设置，点进隐私与安全性，向下滑到安全性一栏。",
+      "subs": [
+        {
+          "start": 24.134,
+          "end": 27.18,
+          "text": "打开系统设置 → 隐私与安全性"
+        },
+        {
+          "start": 27.18,
+          "end": 29.414,
+          "text": "向下滑到「安全性」一栏"
+        }
+      ]
+    },
+    {
+      "id": "c06",
+      "scene": "S02",
+      "cue": "mac_open_anyway",
+      "start": 29.654,
+      "end": 35.512,
+      "duration": 5.858,
+      "text": "找到已阻止使用 Lingo，点击右侧仍要打开并输入密码，一次永久放行。",
+      "subs": [
+        {
+          "start": 29.654,
+          "end": 32.934,
+          "text": "点击右侧「仍要打开」输入密码"
+        },
+        {
+          "start": 32.934,
+          "end": 35.512,
+          "text": "一次放行，以后不再拦截"
+        }
+      ]
+    },
+    {
+      "id": "c07",
+      "scene": "S02",
+      "cue": "mac_local_net",
+      "start": 35.752,
+      "end": 42.735,
+      "duration": 6.983,
+      "text": "顺手开启下面两个开关：本地网络让平板能连上电脑，麦克风用来录音跟读对比。",
+      "subs": [
+        {
+          "start": 35.752,
+          "end": 39.605,
+          "text": "顺手开启「本地网络」与「麦克风」"
+        },
+        {
+          "start": 39.605,
+          "end": 42.735,
+          "text": "方便平板连接与网页跟读录音"
+        }
+      ]
+    },
+    {
+      "id": "c08",
+      "scene": "S02",
+      "cue": "mac_tip",
+      "start": 42.975,
+      "end": 47.633,
+      "duration": 4.658,
+      "text": "小技巧：也可以在应用程序里右键点击 Lingo 选择打开。",
+      "subs": [
+        {
+          "start": 42.975,
+          "end": 47.633,
+          "text": "小技巧：也可右键 Lingo 选「打开」"
+        }
+      ]
+    },
+    {
+      "id": "c09",
+      "scene": "S03",
+      "cue": "hud_init",
+      "start": 48.253,
+      "end": 56.454,
+      "duration": 8.201,
+      "text": "第三步，环境与依赖自检。首次启动会弹出原生进度浮窗自动准备，全程免开黑色命令行。",
+      "subs": [
+        {
+          "start": 48.253,
+          "end": 52.809,
+          "text": "首次启动由原生进度浮窗自动准备"
+        },
+        {
+          "start": 52.809,
+          "end": 56.454,
+          "text": "全程免开黑色命令行敲指令"
+        }
+      ]
+    },
+    {
+      "id": "c10",
+      "scene": "S03",
+      "cue": "env_open",
+      "start": 56.694,
+      "end": 60.29,
+      "duration": 3.596,
+      "text": "进入桌面控制台，点开顶部的环境与依赖页。",
+      "subs": [
+        {
+          "start": 56.694,
+          "end": 60.29,
+          "text": "进入桌面控制台，切到「环境与依赖」"
+        }
+      ]
+    },
+    {
+      "id": "c11",
+      "scene": "S03",
+      "cue": "env_check",
+      "start": 60.53,
+      "end": 66.89,
+      "duration": 6.36,
+      "text": "确认独立环境、核心引擎、音视频解码与离线语音模型五项全绿已就绪。",
+      "subs": [
+        {
+          "start": 60.53,
+          "end": 66.89,
+          "text": "确认右侧五项全部亮绿「已就绪」"
+        }
+      ]
+    },
+    {
+      "id": "c12",
+      "scene": "S03",
+      "cue": "env_repair",
+      "start": 67.13,
+      "end": 73.587,
+      "duration": 6.457,
+      "text": "若有黄或红项，点左上修复更新依赖，内置国内加速镜像会自动一键补齐。",
+      "subs": [
+        {
+          "start": 67.13,
+          "end": 70.549,
+          "text": "如有缺失点左上「修复 / 更新依赖」"
+        },
+        {
+          "start": 70.549,
+          "end": 73.587,
+          "text": "内置国内加速镜像，全自动一键补齐"
+        }
+      ]
+    },
+    {
+      "id": "c13",
+      "scene": "S04",
+      "cue": "pub_tab",
+      "start": 74.207,
+      "end": 80.67,
+      "duration": 6.463,
+      "text": "第四步，一键发布学习机网站。回到服务总览页，默认端口 8000 不用改动。",
+      "subs": [
+        {
+          "start": 74.207,
+          "end": 77.438,
+          "text": "第四步：回到「服务总览」发布网站"
+        },
+        {
+          "start": 77.438,
+          "end": 80.67,
+          "text": "默认端口 8000 保持默认即可"
+        }
+      ]
+    },
+    {
+      "id": "c14",
+      "scene": "S04",
+      "cue": "pub_lan",
+      "start": 80.91,
+      "end": 89.373,
+      "duration": 8.463,
+      "text": "重点拨开局域网共享绿色开关，允许同 Wi-Fi 的平板和手机访问；家里自用，下方口令锁可留空。",
+      "subs": [
+        {
+          "start": 80.91,
+          "end": 85.423,
+          "text": "重点：拨开「局域网共享」绿色开关"
+        },
+        {
+          "start": 85.423,
+          "end": 89.373,
+          "text": "家里自用口令锁可留空免密直进"
+        }
+      ]
+    },
+    {
+      "id": "c15",
+      "scene": "S04",
+      "cue": "pub_onair",
+      "start": 89.613,
+      "end": 95.682,
+      "duration": 6.069,
+      "text": "启动服务，看到 8000 运行中与下方局域网地址亮起，网站就发布成功了！",
+      "subs": [
+        {
+          "start": 89.613,
+          "end": 93.171,
+          "text": "看到 8000 运行中与局域网网址"
+        },
+        {
+          "start": 93.171,
+          "end": 95.682,
+          "text": "说明学习机网站已发布成功"
+        }
+      ]
+    },
+    {
+      "id": "c16",
+      "scene": "S05",
+      "cue": "web_open",
+      "start": 96.302,
+      "end": 103.396,
+      "duration": 7.094,
+      "text": "第五步，电脑浏览器上手使用。点在浏览器打开学习机，一键直达 Lingo 网页端。",
+      "subs": [
+        {
+          "start": 96.302,
+          "end": 99.482,
+          "text": "点击「在浏览器打开学习机」"
+        },
+        {
+          "start": 99.482,
+          "end": 103.396,
+          "text": "一键直达 Lingo 网页学习机"
+        }
+      ]
+    },
+    {
+      "id": "c17",
+      "scene": "S05",
+      "cue": "web_upload",
+      "start": 103.636,
+      "end": 110.719,
+      "duration": 7.083,
+      "text": "进资料库直接拖入英语视频或音频，自动完成语音识别、精准分句与双语精析。",
+      "subs": [
+        {
+          "start": 103.636,
+          "end": 107.571,
+          "text": "进「资料库」拖入英语视频或音频"
+        },
+        {
+          "start": 107.571,
+          "end": 110.719,
+          "text": "自动转写、分句与双语精析"
+        }
+      ]
+    },
+    {
+      "id": "c18",
+      "scene": "S05",
+      "cue": "web_shadow",
+      "start": 110.959,
+      "end": 120.333,
+      "duration": 9.374,
+      "text": "回到学习机，支持单句循环和音标精听；点跟读对比后可边听原文边连续跟读，自动逐句存到对应句子下方。",
+      "subs": [
+        {
+          "start": 110.959,
+          "end": 116.131,
+          "text": "支持单句循环、音标与连续跟读对比"
+        },
+        {
+          "start": 116.131,
+          "end": 120.333,
+          "text": "边播边读，自动逐句归类存档"
+        }
+      ]
+    },
+    {
+      "id": "c19",
+      "scene": "S05",
+      "cue": "web_skin",
+      "start": 120.573,
+      "end": 124.057,
+      "duration": 3.484,
+      "text": "右上角还能一键切换三套玩味 3D 皮肤。",
+      "subs": [
+        {
+          "start": 120.573,
+          "end": 124.057,
+          "text": "右上角一键切换三套 3D 主题皮肤"
+        }
+      ]
+    },
+    {
+      "id": "c20",
+      "scene": "S06",
+      "cue": "ipad_intro",
+      "start": 124.677,
+      "end": 130.134,
+      "duration": 5.457,
+      "text": "第六步，用平板电脑大屏访问，完全不用在平板上装任何 App。",
+      "subs": [
+        {
+          "start": 124.677,
+          "end": 130.134,
+          "text": "第六步：平板大屏精听，免装任何 App"
+        }
+      ]
+    },
+    {
+      "id": "c21",
+      "scene": "S06",
+      "cue": "ipad_wifi",
+      "start": 130.374,
+      "end": 135.603,
+      "duration": 5.229,
+      "text": "只需确认 Mac 和平板连着同一个 Wi-Fi，且电脑端服务正在运行。",
+      "subs": [
+        {
+          "start": 130.374,
+          "end": 133.264,
+          "text": "确认 Mac 与平板连在同一个 Wi-Fi"
+        },
+        {
+          "start": 133.264,
+          "end": 135.603,
+          "text": "且电脑端 Lingo 服务保持运行"
+        }
+      ]
+    },
+    {
+      "id": "c22",
+      "scene": "S06",
+      "cue": "ipad_copy",
+      "start": 135.843,
+      "end": 142.344,
+      "duration": 6.501,
+      "text": "看电脑控制台显示的局域网地址，比如 192.168.1.28 冒号 8000。",
+      "subs": [
+        {
+          "start": 135.843,
+          "end": 138.063,
+          "text": "查看控制台「局域网访问地址」"
+        },
+        {
+          "start": 138.063,
+          "end": 142.344,
+          "text": "例如 http://192.168.1.28:8000"
+        }
+      ]
+    },
+    {
+      "id": "c23",
+      "scene": "S06",
+      "cue": "ipad_type",
+      "start": 142.584,
+      "end": 146.742,
+      "duration": 4.158,
+      "text": "打开平板浏览器，在地址栏输入这串网址并前往。",
+      "subs": [
+        {
+          "start": 142.584,
+          "end": 146.742,
+          "text": "在平板浏览器输入这串网址并前往"
+        }
+      ]
+    },
+    {
+      "id": "c24",
+      "scene": "S06",
+      "cue": "ipad_ready",
+      "start": 146.982,
+      "end": 155.076,
+      "duration": 8.094,
+      "text": "一秒直达完整学习机！课程、生词本与跟读记录实时同步，手机用同样方法也能随时学。",
+      "subs": [
+        {
+          "start": 146.982,
+          "end": 151.179,
+          "text": "一秒同步大屏精听，记录全共享"
+        },
+        {
+          "start": 151.179,
+          "end": 155.076,
+          "text": "手机用同样方法也能随时打开"
+        }
+      ]
+    },
+    {
+      "id": "c25",
+      "scene": "S07",
+      "cue": "recap_cards",
+      "start": 155.696,
+      "end": 163.389,
+      "duration": 7.693,
+      "text": "最后记住四步：拖入安装、隐私点仍要打开、一键开启局域网发布、电脑与平板双端精听。",
+      "subs": [
+        {
+          "start": 155.696,
+          "end": 159.286,
+          "text": "四步速记：安装 → 隐私放行"
+        },
+        {
+          "start": 159.286,
+          "end": 163.389,
+          "text": "一键发布 → 电脑与平板双端精听"
+        }
+      ]
+    },
+    {
+      "id": "c26",
+      "scene": "S07",
+      "cue": "outro_logo",
+      "start": 163.629,
+      "end": 166.317,
+      "duration": 2.688,
+      "text": "现在就打开 Lingo，精听每一句吧。",
+      "subs": [
+        {
+          "start": 163.629,
+          "end": 166.317,
+          "text": "打开 Lingo，精听每一句"
+        }
+      ]
+    }
+  ],
+  "sfxEvents": [
+    {
+      "time": 0.55,
+      "type": "chime",
+      "gain": 0.36,
+      "cue": "intro_logo"
+    },
+    {
+      "time": 7.279,
+      "type": "whoosh",
+      "gain": 0.32,
+      "cue": "dmg_open"
+    },
+    {
+      "time": 9.559,
+      "type": "click",
+      "gain": 0.44,
+      "cue": "dmg_open"
+    },
+    {
+      "time": 14.224,
+      "type": "chime",
+      "gain": 0.42,
+      "cue": "dmg_done"
+    },
+    {
+      "time": 16.566,
+      "type": "whoosh",
+      "gain": 0.32,
+      "cue": "mac_block"
+    },
+    {
+      "time": 20.766,
+      "type": "click",
+      "gain": 0.45,
+      "cue": "mac_block"
+    },
+    {
+      "time": 25.534,
+      "type": "click",
+      "gain": 0.4,
+      "cue": "mac_settings"
+    },
+    {
+      "time": 31.854,
+      "type": "click",
+      "gain": 0.48,
+      "cue": "mac_open_anyway"
+    },
+    {
+      "time": 33.454,
+      "type": "chime",
+      "gain": 0.42,
+      "cue": "mac_open_anyway"
+    },
+    {
+      "time": 37.352,
+      "type": "toggle",
+      "gain": 0.48,
+      "cue": "mac_local_net"
+    },
+    {
+      "time": 39.352,
+      "type": "toggle",
+      "gain": 0.48,
+      "cue": "mac_local_net"
+    },
+    {
+      "time": 43.475,
+      "type": "pop",
+      "gain": 0.34,
+      "cue": "mac_tip"
+    },
+    {
+      "time": 48.253,
+      "type": "whoosh",
+      "gain": 0.32,
+      "cue": "hud_init"
+    },
+    {
+      "time": 52.653,
+      "type": "chime",
+      "gain": 0.38,
+      "cue": "hud_init"
+    },
+    {
+      "time": 56.794,
+      "type": "whoosh",
+      "gain": 0.3,
+      "cue": "env_open"
+    },
+    {
+      "time": 58.294,
+      "type": "click",
+      "gain": 0.42,
+      "cue": "env_open"
+    },
+    {
+      "time": 61.53,
+      "type": "pop",
+      "gain": 0.28,
+      "cue": "env_check"
+    },
+    {
+      "time": 62.93,
+      "type": "pop",
+      "gain": 0.28,
+      "cue": "env_check"
+    },
+    {
+      "time": 64.13,
+      "type": "chime",
+      "gain": 0.4,
+      "cue": "env_check"
+    },
+    {
+      "time": 68.93,
+      "type": "pop",
+      "gain": 0.34,
+      "cue": "env_repair"
+    },
+    {
+      "time": 74.207,
+      "type": "whoosh",
+      "gain": 0.3,
+      "cue": "pub_tab"
+    },
+    {
+      "time": 76.407,
+      "type": "click",
+      "gain": 0.42,
+      "cue": "pub_tab"
+    },
+    {
+      "time": 82.11,
+      "type": "toggle",
+      "gain": 0.5,
+      "cue": "pub_lan"
+    },
+    {
+      "time": 85.11,
+      "type": "pop",
+      "gain": 0.3,
+      "cue": "pub_lan"
+    },
+    {
+      "time": 90.413,
+      "type": "click",
+      "gain": 0.44,
+      "cue": "pub_onair"
+    },
+    {
+      "time": 92.013,
+      "type": "chime",
+      "gain": 0.45,
+      "cue": "pub_onair"
+    },
+    {
+      "time": 96.302,
+      "type": "whoosh",
+      "gain": 0.3,
+      "cue": "web_open"
+    },
+    {
+      "time": 98.702,
+      "type": "click",
+      "gain": 0.44,
+      "cue": "web_open"
+    },
+    {
+      "time": 104.036,
+      "type": "click",
+      "gain": 0.4,
+      "cue": "web_upload"
+    },
+    {
+      "time": 105.836,
+      "type": "pop",
+      "gain": 0.36,
+      "cue": "web_upload"
+    },
+    {
+      "time": 111.159,
+      "type": "whoosh",
+      "gain": 0.28,
+      "cue": "web_shadow"
+    },
+    {
+      "time": 113.559,
+      "type": "click",
+      "gain": 0.42,
+      "cue": "web_shadow"
+    },
+    {
+      "time": 115.759,
+      "type": "pop",
+      "gain": 0.34,
+      "cue": "web_shadow"
+    },
+    {
+      "time": 121.473,
+      "type": "click",
+      "gain": 0.4,
+      "cue": "web_skin"
+    },
+    {
+      "time": 124.677,
+      "type": "whoosh",
+      "gain": 0.34,
+      "cue": "ipad_intro"
+    },
+    {
+      "time": 131.774,
+      "type": "pop",
+      "gain": 0.32,
+      "cue": "ipad_wifi"
+    },
+    {
+      "time": 133.374,
+      "type": "pop",
+      "gain": 0.32,
+      "cue": "ipad_wifi"
+    },
+    {
+      "time": 137.443,
+      "type": "click",
+      "gain": 0.42,
+      "cue": "ipad_copy"
+    },
+    {
+      "time": 143.784,
+      "type": "type",
+      "gain": 0.42,
+      "cue": "ipad_type"
+    },
+    {
+      "time": 145.384,
+      "type": "click",
+      "gain": 0.44,
+      "cue": "ipad_type"
+    },
+    {
+      "time": 147.132,
+      "type": "chime",
+      "gain": 0.45,
+      "cue": "ipad_ready"
+    },
+    {
+      "time": 155.696,
+      "type": "whoosh",
+      "gain": 0.3,
+      "cue": "recap_cards"
+    },
+    {
+      "time": 156.996,
+      "type": "pop",
+      "gain": 0.32,
+      "cue": "recap_cards"
+    },
+    {
+      "time": 158.096,
+      "type": "pop",
+      "gain": 0.32,
+      "cue": "recap_cards"
+    },
+    {
+      "time": 159.296,
+      "type": "pop",
+      "gain": 0.32,
+      "cue": "recap_cards"
+    },
+    {
+      "time": 160.496,
+      "type": "pop",
+      "gain": 0.32,
+      "cue": "recap_cards"
+    },
+    {
+      "time": 164.029,
+      "type": "chime",
+      "gain": 0.42,
+      "cue": "outro_logo"
+    }
+  ]
+}

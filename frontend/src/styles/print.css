@@ -1,0 +1,70 @@
+.print-sheet {
+  display: none;
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 16mm 14mm;
+  }
+  html, body, #root {
+    background: #FFFFFF !important;
+    color: #111111 !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+  .app-frame,
+  .modal-backdrop,
+  .toast-3d {
+    display: none !important;
+  }
+  .print-sheet {
+    display: block !important;
+    font-family: "Noto Sans SC", system-ui, sans-serif;
+    color: #111111;
+  }
+  .print-header {
+    border-bottom: 2px solid #111111;
+    padding-bottom: 10px;
+    margin-bottom: 16px;
+  }
+  .print-header h1 {
+    font-size: 20pt;
+    margin-bottom: 4px;
+  }
+  .print-meta {
+    font-size: 10pt;
+    color: #444444;
+  }
+  .print-cue {
+    margin-bottom: 11px;
+    page-break-inside: avoid;
+  }
+  .print-cue-en {
+    font-size: 11.5pt;
+    font-weight: 700;
+  }
+  .print-cue-ipa {
+    font-family: monospace;
+    font-size: 9.5pt;
+    color: #444444;
+  }
+  .print-cue-cn {
+    font-size: 10pt;
+    color: #222222;
+  }
+  .print-glossary {
+    margin-top: 20px;
+    border-top: 2px solid #111111;
+    padding-top: 12px;
+  }
+  .print-glossary h2 {
+    font-size: 14pt;
+    margin-bottom: 10px;
+  }
+  .print-word-item {
+    margin-bottom: 7px;
+    font-size: 10pt;
+    page-break-inside: avoid;
+  }
+}
